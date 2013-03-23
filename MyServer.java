@@ -23,6 +23,7 @@ public class MyServer{
 		while(rover!=null){
 			if(rover.status == 1){
 				rover.sendMessage(m);
+				System.out.println(m.header + " - " + rover.name);
 			}
 			rover = rover.next;
 		}

@@ -44,14 +44,17 @@ public class MyClient extends JFrame{
 					if(gameState == 0){
 						msg.header = "START GAME";
 						gameState = 1;
+						System.out.println("START KEY PRESS");
 					}
 					else if(gameState == 1){
 						msg.header = "PAUSE GAME";
 						gameState = 2;
+						System.out.println("PAUSE KEY PRESS");
 					}
 					else if(gameState == 2){
 						msg.header = "RESUME GAME";
 						gameState = 1;
+						System.out.println("RESUME KEY PRESS");
 					}
 					try{
 						sendObject(msg);
@@ -70,6 +73,7 @@ public class MyClient extends JFrame{
 			new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					Message msg = new Message(9, 0);
+					System.out.println("QUIT KEY PRESS");
 					try{
 						sendObject(msg);
 					}catch(Exception E){
@@ -107,6 +111,7 @@ public class MyClient extends JFrame{
 			new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					String ans = ansTA.getText();
+					System.out.println("SEND KEY PRESS" + "" + ans);
 					Message msg = new Message(8, 0, ans);
 					try{
 						sendObject(msg);

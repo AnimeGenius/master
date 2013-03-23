@@ -56,6 +56,11 @@ public class ServerT extends Thread{
 		while(rover != null){
 			if(rover.status == 1){
 				rover.sendMessage(m);
+				if(m.header.equals("APPEND GIRL")){
+					Girl xxx = getGirl(randlist[conn.currgirl]);
+					System.out.print(xxx.name + " ");
+				}
+				System.out.println(m.header + " : " +  conn.name + " - " + rover.name);
 			}
 			rover = rover.next;
 		}
@@ -145,7 +150,7 @@ public class ServerT extends Thread{
 			int gate = 0;
 			while(gate == 0){
 				Message msg = conn.getMessage();
-				//Done
+				System.out.println(conn.name + " :: " + msg.header);
 				if(msg.header.equals("START GAME")){
 					if(gameState == 0){
 						randAlgo();
@@ -158,11 +163,9 @@ public class ServerT extends Thread{
 						gameState = 1;
 					}
 				}
-				//Done
 				else if(msg.header.equals("END GAME")){
 					gameState = 0;
 				}
-				//Done
 				else if(msg.header.equals("EXIT")){
 					conn.status = 2;
 					Message mc = new Message(6, 0, 0);
@@ -171,21 +174,18 @@ public class ServerT extends Thread{
 					omniData(scores);
 					gate = 1;
 				}
-				//Done
 				else if(msg.header.equals("PAUSE GAME")){
 					if(gameState == 1){
 						Message m = new Message("FALSE PAUSE");
 						omniSend(m);
 					}
 				}
-				//Done
 				else if(msg.header.equals("RESUME GAME")){
 					if(gameState == 2){
 						Message m = new Message("FALSE RESUME");
 						omniSend(m);
 					}
 				}
-				//Done
 				else if(msg.header.equals("ANSWER")){
 					if(gameState == 1){
 						int holder = conn.currgirl;
@@ -203,7 +203,6 @@ public class ServerT extends Thread{
 								omniData(scores);
 							}
 							else{
-								//End game protocol
 								Message mc = new Message(6, 0, 0);
 								omniSend(mc);
 								String scores = getScore();
@@ -214,7 +213,6 @@ public class ServerT extends Thread{
 						}
 					}
 				}
-				//Done
 				else if(msg.header.equals("FALSE START")){
 					if(gameState == 0){
 						if(flag == 0){
@@ -232,13 +230,11 @@ public class ServerT extends Thread{
 					Message md = new Message(7, g);
 					omniSend(md);
 				}
-				//Done
 				else if(msg.header.equals("FALSE RESUME")){
 					if(gameState == 2){
 						gameState = 1;
 					}
 				}
-				//Done
 				else if(msg.header.equals("FALSE PAUSE")){
 					if (gameState == 1) {
 						gameState = 2;
