@@ -111,7 +111,8 @@ public class MyClient extends JFrame{
 			new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					String ans = ansTA.getText();
-					System.out.println("SEND KEY PRESS" + "" + ans);
+					ansTA.setText("");
+					System.out.println("SEND KEY PRESS" + " : " + ans);
 					Message msg = new Message(8, 0, ans);
 					try{
 						sendObject(msg);

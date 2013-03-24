@@ -108,6 +108,14 @@ public class ServerT extends Thread{
 		return grover;
 	}
 
+	public void omniScore(int a){
+		rover = head;
+		while(rover != null){
+			rover.score = 0;
+			rover = rover.next;
+		}
+	}
+
 	public boolean isExist(int number, int counter){
 		int x = 0;
 		while(x < counter){
@@ -123,7 +131,7 @@ public class ServerT extends Thread{
 		int cnt = 0;
 		Random rand = new Random();
 		while(cnt < 25){
-			int a = rand.nextInt(56);
+			int a = rand.nextInt(100);
 			if(cnt == 0){
 				randlist[cnt] = a;
 				cnt++;
@@ -158,6 +166,7 @@ public class ServerT extends Thread{
 						flag = 1;
 						omniRandSet();
 						omniGirlSet(0);
+						omniScore(0);
 						Message m = new Message("FALSE START");
 						omniSend(m);
 						gameState = 1;
@@ -229,6 +238,8 @@ public class ServerT extends Thread{
 					Girl g = getGirl(randlist[holder]);
 					Message md = new Message(7, g);
 					omniSend(md);
+					Message mc = new Message(6, 0, 0);
+					omniSend(mc);
 				}
 				else if(msg.header.equals("FALSE RESUME")){
 					if(gameState == 2){

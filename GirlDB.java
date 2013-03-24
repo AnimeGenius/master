@@ -69,7 +69,7 @@ public class GirlDB{
 			int d = Integer.parseInt(JOptionPane.showInputDialog("Choose your decision:\n1 - Add a Girl\n2- Save to DB\n3- Load from DB\n4- List Items\n5- Exit"));
 			if(d == 1){
 				String name = JOptionPane.showInputDialog("Input Name:");
-				String img = JOptionPane.showInputDialog("Input img location and name:");
+				String img = "images\\" + name + ".jpg";
 				String alt = JOptionPane.showInputDialog("Input character's alternate name:");
 				holder = new Girl(name, img, alt);
 				insert(holder);
